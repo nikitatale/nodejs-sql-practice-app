@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="/show.css">
+</head>
+<body>
+
+     <h1>All Users</h1>
+
+     <div>
+        <a class="new-user-btn" href="http://localhost:8080/users/new">
+        + Create New User
+     </a>
+
+     &nbsp;  &nbsp;
+
+     <a class="new-user-btn" href="http://localhost:8080/">
+        <b>←</b> Back To Home
+     </a>
+     </div>
+
+     <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Edit User</th>
+                    <th>Delete User</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for(let res of result) { %>
+                <tr>
+                    <td><%= res.id %></td>
+                    <td><%= res.username %></td>
+                    <td><%= res.email %></td>
+
+                    <td>
+                        <form action="/users/<%= res.id %>/edit" method="get">
+                            <button class="edit-btn">Edit</button>
+                        </form>
+                    </td>
+
+                    <td>
+                        <form action="/users/<%= res.id %>?_method=DELETE" method="POST">
+                            <button>Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+     </table>
+
+</body>
+</html>
